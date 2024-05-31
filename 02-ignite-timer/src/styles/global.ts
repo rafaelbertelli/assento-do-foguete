@@ -20,5 +20,6 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${(props) => props.theme["gray-900"]};
     color: ${(props) => props.theme["gray-300"]};
     font-family: Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 `;
