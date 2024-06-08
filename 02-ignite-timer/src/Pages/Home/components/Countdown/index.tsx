@@ -1,6 +1,7 @@
 import { differenceInSeconds } from "date-fns";
 import { useContext, useEffect } from "react";
-import { CyclesContext } from "../../index";
+
+import { CyclesContext } from "../../../../contexts/CyclesContext";
 import { CountdownContainer, Separator } from "./styles";
 
 export function Countdown() {
@@ -30,6 +31,7 @@ export function Countdown() {
         );
 
         if (calculatedDiff >= totalSeconds) {
+          console.log("1___");
           markCurrentCycleAsFinished();
           setSecondsPassed(0);
           clearInterval(interval);
