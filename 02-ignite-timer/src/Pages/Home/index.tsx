@@ -30,8 +30,8 @@ export function Home() {
   const newCycleForm = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
-      task: "",
-      minutesAmount: 0,
+      task: "Atividade de teste",
+      minutesAmount: 20,
     },
   });
   const { watch, handleSubmit, reset } = newCycleForm;
