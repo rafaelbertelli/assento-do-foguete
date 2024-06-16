@@ -30,7 +30,7 @@ export function History() {
                 day: "2-digit",
                 hour: "2-digit",
                 minute: "2-digit",
-              }).format(c.startDate);
+              }).format(new Date(c.startDate));
 
               const timeCalculated = formatDistanceToNow(c.startDate, {
                 locale: ptBR,
