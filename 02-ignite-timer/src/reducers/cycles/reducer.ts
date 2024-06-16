@@ -1,3 +1,5 @@
+import { produce } from "immer";
+
 import { ActionTypes } from "./actions";
 
 export interface Cycle {
@@ -19,39 +21,32 @@ export function cyclesRreducer(state: CyclesState, action: any) {
 
   switch (action.type) {
     case ActionTypes.ADD_NEW_CYCLE:
-      return {
-        ...state,
-        activeCycleId: action.payload.newCycle.id,
-        cycles: [...state.cycles, action.payload.newCycle],
-      };
+      return produce(state, (draft: CyclesState) => {
+        draft.activeCycleId = action.payload.newCycle.id;
+        draft.cycles.push(action.payload.newCycle);
+      });
+
     case ActionTypes.INTERRUPT_CURRENT_CYCLE:
-      return {
-        ...state,
-        activeCycleId: null,
-        cycles: state.cycles.map((cycle) => {
+      return produce(state, (draft: CyclesState) => {
+        draft.activeCycleId = null;
+        draft.cycles = draft.cycles.map((cycle) => {
           if (cycle.id === state.activeCycleId) {
-            return {
-              ...cycle,
-              interruptedDate: new Date(),
-            };
+            cycle.interruptedDate = new Date();
           }
           return cycle;
-        }),
-      };
+        });
+      });
+
     case ActionTypes.MARK_CURRENT_CYCLE_AS_FINISHED:
-      return {
-        ...state,
-        activeCycleId: null,
-        cycles: state.cycles.map((cycle) => {
+      return produce(state, (draft: CyclesState) => {
+        draft.activeCycleId = null;
+        draft.cycles = draft.cycles.map((cycle) => {
           if (cycle.id === state.activeCycleId) {
-            return {
-              ...cycle,
-              finishedDate: new Date(),
-            };
+            cycle.finishedDate = new Date();
           }
           return cycle;
-        }),
-      };
+        });
+      });
     default:
       return state;
   }
