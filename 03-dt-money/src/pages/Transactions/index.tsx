@@ -4,6 +4,7 @@ import {
   Transaction,
   useTransactions,
 } from "../../contexts/TransactionsContext";
+import { dateFormatter, priceFormatter } from "../../utils/formatters";
 import { SearchForm } from "./components/SearchForm";
 import {
   PriceHighlight,
@@ -24,25 +25,25 @@ export function Transactions() {
 
         <TransactionsTable>
           <tbody>
-            {transactions.map((transaction: Transaction) => (
-              <tr key={transaction.id}>
-                <td width="50%">{transaction.description}</td>
-                <td>
-                  <PriceHighlight variant={transaction.type}>
-                    {new Intl.NumberFormat("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    }).format(transaction.price)}
-                  </PriceHighlight>
-                </td>
-                <td>{transaction.category}</td>
-                <td>
-                  <time dateTime={transaction.createdAt}>
-                    {new Date(transaction.createdAt).toLocaleDateString()}
-                  </time>
-                </td>
-              </tr>
-            ))}
+            {transactions.map((transaction: Transaction) => {
+              const dateFormated = dateFormatter(transaction.createdAt);
+
+              return (
+                <tr key={transaction.id}>
+                  <td width="50%">{transaction.description}</td>
+                  <td>
+                    <PriceHighlight variant={transaction.type}>
+                      {transaction.type === "outcome" && "- "}
+                      {priceFormatter(transaction.price)}
+                    </PriceHighlight>
+                  </td>
+                  <td>{transaction.category}</td>
+                  <td>
+                    <time dateTime={dateFormated}>{dateFormated}</time>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </TransactionsTable>
       </TransactionsContainer>
