@@ -30,3 +30,14 @@ export default {
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
 <https://www.figma.com/community/file/1138814493269096792>
+
+
+## Comandos
+
+```bash
+# JSON-server https://www.npmjs.com/package/json-server
+npm run dev:server
+
+# APP
+npm run dev
+```

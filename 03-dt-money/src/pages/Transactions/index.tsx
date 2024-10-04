@@ -1,19 +1,19 @@
-import { Header } from "../../components/Header";
-import { Summary } from "../../components/Summary";
+import { Header } from '../../components/Header'
+import { Summary } from '../../components/Summary'
 import {
   Transaction,
   useTransactions,
-} from "../../contexts/TransactionsContext";
-import { dateFormatter, priceFormatter } from "../../utils/formatters";
-import { SearchForm } from "./components/SearchForm";
+} from '../../contexts/TransactionsContext'
+import { dateFormatter, priceFormatter } from '../../utils/formatters'
+import { SearchForm } from './components/SearchForm'
 import {
   PriceHighlight,
   TransactionsContainer,
   TransactionsTable,
-} from "./styles";
+} from './styles'
 
 export function Transactions() {
-  const { transactions } = useTransactions();
+  const { transactions } = useTransactions()
 
   return (
     <div>
@@ -26,14 +26,14 @@ export function Transactions() {
         <TransactionsTable>
           <tbody>
             {transactions.map((transaction: Transaction) => {
-              const dateFormated = dateFormatter(transaction.createdAt);
+              const dateFormated = dateFormatter(transaction.createdAt)
 
               return (
                 <tr key={transaction.id}>
                   <td width="50%">{transaction.description}</td>
                   <td>
                     <PriceHighlight variant={transaction.type}>
-                      {transaction.type === "outcome" && "- "}
+                      {transaction.type === 'outcome' && '- '}
                       {priceFormatter(transaction.price)}
                     </PriceHighlight>
                   </td>
@@ -42,11 +42,11 @@ export function Transactions() {
                     <time dateTime={dateFormated}>{dateFormated}</time>
                   </td>
                 </tr>
-              );
+              )
             })}
           </tbody>
         </TransactionsTable>
       </TransactionsContainer>
     </div>
-  );
+  )
 }
