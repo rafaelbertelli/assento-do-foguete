@@ -3,9 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { z } from "zod";
-
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -20,8 +20,17 @@ export function SignIn() {
   } = useForm<SignInForm>();
 
   async function handleSignIn(data: SignInForm) {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(data);
+    toast.success(`Enviamos um link de login para - ${data.email}`, {
+      duration: 5000,
+      action: {
+        label: "Reenviar",
+        onClick: () => {
+          handleSignIn(data);
+        },
+      },
+    });
   }
 
   return (
