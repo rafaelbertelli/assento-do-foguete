@@ -14,7 +14,8 @@ export function Orders() {
   return (
     <>
       <PageTitle title="Pedidos" />
-      <div className="space-y-2.5">
+
+      <div className="space-y-5">
         <OrderTableFilters />
 
         <div className="rounded-md border">
