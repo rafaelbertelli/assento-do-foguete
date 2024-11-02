@@ -4,6 +4,6 @@ interface SignInRequest {
   email: string;
 }
 
-export async function signIn({ email }: SignInRequest) {
+export async function signInApi({ email }: SignInRequest) {
   await api.post("/authenticate", { email });
 }

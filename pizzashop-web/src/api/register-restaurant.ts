@@ -7,7 +7,7 @@ interface RegisterRestaurantRequest {
   email: string;
 }
 
-export async function registerRestaurant({
+export async function registerRestaurantApi({
   restaurantName,
   managerName,
   phone,
