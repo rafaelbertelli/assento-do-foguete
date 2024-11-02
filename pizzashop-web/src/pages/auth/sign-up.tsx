@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { registerRestaurant } from "@/api/register-restaurant";
+import { registerRestaurantApi } from "@/api/register-restaurant";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useMutation } from "@tanstack/react-query";
@@ -27,13 +27,13 @@ export function SignUp() {
     formState: { isSubmitting },
   } = useForm<SignUpForm>();
 
-  const { mutateAsync: registerRestaurantApi } = useMutation({
-    mutationFn: registerRestaurant,
+  const { mutateAsync: registerRestaurant } = useMutation({
+    mutationFn: registerRestaurantApi,
   });
 
   async function handleSignUp(data: SignUpForm) {
     try {
-      await registerRestaurantApi({
+      await registerRestaurant({
         restaurantName: data.restaurantName,
         managerName: data.managerName,
         phone: data.phone,

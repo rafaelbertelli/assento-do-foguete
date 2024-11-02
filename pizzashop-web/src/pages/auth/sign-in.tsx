@@ -5,7 +5,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { signIn } from "@/api/sign-in";
+import { signInApi } from "@/api/sign-in";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,13 +29,13 @@ export function SignIn() {
     },
   });
 
-  const { mutateAsync: authenticateApi } = useMutation({
-    mutationFn: signIn,
+  const { mutateAsync: signIn } = useMutation({
+    mutationFn: signInApi,
   });
 
   async function handleSignIn(data: SignInForm) {
     try {
-      await authenticateApi({ email: data.email });
+      await signIn({ email: data.email });
 
       toast.success(`Enviamos um link de login para - ${data.email}`, {
         duration: 5000,
@@ -76,6 +76,7 @@ export function SignIn() {
               <Input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="Digite seu e-mail"
                 {...register("email")}
               />
