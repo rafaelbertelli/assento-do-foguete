@@ -28,7 +28,7 @@ const storeProfileSchema = z.object({
 
 type StoreProfile = z.infer<typeof storeProfileSchema>;
 
-export function StoreProfileDialog() {
+export function StoreProfileDialog({ onEdited }: { onEdited: () => void }) {
   const queryClient = useQueryClient();
 
   const { data: managedRestaurant } = useQuery({
@@ -70,6 +70,8 @@ export function StoreProfileDialog() {
         name: data.name,
         description: data.description,
       });
+
+      onEdited();
       toast.success("Perfil atualizado com sucesso");
     } catch (error) {
       toast.error(

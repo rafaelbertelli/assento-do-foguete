@@ -2,6 +2,7 @@ import { getManagedRestaurantApi } from "@/api/get-managed-restaurant";
 import { getProfileApi } from "@/api/get-profile";
 import { useQuery } from "@tanstack/react-query";
 import { Building, ChevronDown, LogOut } from "lucide-react";
+import { useState } from "react";
 import { StoreProfileDialog } from "./store-profile-dialog";
 import { Button } from "./ui/button";
 import { Dialog, DialogTrigger } from "./ui/dialog";
@@ -16,6 +17,8 @@ import {
 import { Skeleton } from "./ui/skeleton";
 
 export function AccountMenu() {
+  const [open, setOpen] = useState(false);
+
   const { data: profile, isLoading: isLoadingProfile } = useQuery({
     queryKey: ["profile"],
     queryFn: getProfileApi,
@@ -27,8 +30,12 @@ export function AccountMenu() {
       queryFn: getManagedRestaurantApi,
     });
 
+  function toggleDialog() {
+    setOpen((prev) => !prev);
+  }
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={toggleDialog}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -77,7 +84,7 @@ export function AccountMenu() {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <StoreProfileDialog />
+      <StoreProfileDialog onEdited={toggleDialog} />
     </Dialog>
   );
 }
