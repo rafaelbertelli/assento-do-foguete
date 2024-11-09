@@ -23,40 +23,52 @@ import { Textarea } from "./ui/textarea";
 
 const storeProfileSchema = z.object({
   name: z.string().min(1),
-  description: z.string().min(1),
+  description: z.string(),
 });
 
-type StoreProfile = z.infer<typeof storeProfileSchema>;
+type StoreProfileSchema = z.infer<typeof storeProfileSchema>;
 
 export function StoreProfileDialog({ onEdited }: { onEdited: () => void }) {
   const queryClient = useQueryClient();
+
+  function updateManagedRestaurantCached(variables: StoreProfileSchema) {
+    const cached = queryClient.getQueryData<GetManagedRestaurantResponse>([
+      "managed-restaurant",
+    ]);
+
+    if (cached) {
+      queryClient.setQueryData<GetManagedRestaurantResponse>(
+        ["managed-restaurant"],
+        {
+          ...cached,
+          name: variables.name,
+          description: variables.description,
+        },
+      );
+    }
+
+    return { cached };
+  }
+
+  const { mutateAsync: updateProfile } = useMutation({
+    mutationFn: updateProfileApi,
+    onMutate: ({ name, description }) => {
+      const { cached } = updateManagedRestaurantCached({ name, description });
+      return { previousProfile: cached };
+    },
+    onError: (_, __, context) => {
+      if (context?.previousProfile) {
+        updateManagedRestaurantCached(context.previousProfile);
+      }
+    },
+  });
 
   const { data: managedRestaurant } = useQuery({
     queryKey: ["managed-restaurant"],
     queryFn: getManagedRestaurantApi,
   });
 
-  const { mutateAsync: updateProfile } = useMutation({
-    mutationFn: updateProfileApi,
-    onSuccess: (_, variables) => {
-      const cached = queryClient.getQueryData<GetManagedRestaurantResponse>([
-        "managed-restaurant",
-      ]);
-
-      if (cached) {
-        queryClient.setQueryData<GetManagedRestaurantResponse>(
-          ["managed-restaurant"],
-          {
-            ...cached,
-            name: variables.name,
-            description: variables.description,
-          },
-        );
-      }
-    },
-  });
-
-  const { register, handleSubmit } = useForm<StoreProfile>({
+  const { register, handleSubmit } = useForm<StoreProfileSchema>({
     resolver: zodResolver(storeProfileSchema),
     values: {
       name: managedRestaurant?.name ?? "",
@@ -64,7 +76,7 @@ export function StoreProfileDialog({ onEdited }: { onEdited: () => void }) {
     },
   });
 
-  async function handleUpdateProfile(data: StoreProfile) {
+  async function handleUpdateProfile(data: StoreProfileSchema) {
     try {
       await updateProfile({
         name: data.name,
