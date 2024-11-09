@@ -1,13 +1,7 @@
 import { getOrdersApi } from "@/api/get-orders";
 import { PageTitle } from "@/components/page-title";
 import { Paging } from "@/components/paging";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { z } from "zod";
@@ -66,9 +60,7 @@ export function Orders() {
             </TableHeader>
 
             <TableBody>
-              {result?.orders?.map((order) => (
-                <OrderTableRow key={order.orderId} order={order} />
-              ))}
+              {result?.orders?.map((order) => <OrderTableRow key={order.orderId} order={order} />)}
             </TableBody>
           </Table>
         </div>

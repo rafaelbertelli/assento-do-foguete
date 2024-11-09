@@ -27,11 +27,10 @@ export function AccountMenu() {
     queryFn: getProfileApi,
   });
 
-  const { data: managedRestaurant, isLoading: isLoadingManagedRestaurant } =
-    useQuery({
-      queryKey: ["managed-restaurant"],
-      queryFn: getManagedRestaurantApi,
-    });
+  const { data: managedRestaurant, isLoading: isLoadingManagedRestaurant } = useQuery({
+    queryKey: ["managed-restaurant"],
+    queryFn: getManagedRestaurantApi,
+  });
 
   const { mutateAsync: signOut, isPending: isSigningOut } = useMutation({
     mutationFn: signOutApi,
@@ -48,15 +47,8 @@ export function AccountMenu() {
     <Dialog open={open} onOpenChange={toggleDialog}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            className="flex select-none items-center gap-2"
-          >
-            {isLoadingManagedRestaurant ? (
-              <Skeleton className="h-4 w-40" />
-            ) : (
-              managedRestaurant?.name
-            )}
+          <Button variant="outline" className="flex select-none items-center gap-2">
+            {isLoadingManagedRestaurant ? <Skeleton className="h-4 w-40" /> : managedRestaurant?.name}
 
             <ChevronDown />
           </Button>
@@ -71,9 +63,7 @@ export function AccountMenu() {
             ) : (
               <>
                 <span>{profile?.name}</span>
-                <span className="text-sm font-normal text-muted-foreground">
-                  {profile?.email}
-                </span>
+                <span className="text-sm font-normal text-muted-foreground">{profile?.email}</span>
               </>
             )}
           </DropdownMenuLabel>
@@ -87,11 +77,7 @@ export function AccountMenu() {
             </DropdownMenuItem>
           </DialogTrigger>
 
-          <DropdownMenuItem
-            asChild
-            className="text-rose-500 dark:text-rose-400"
-            disabled={isSigningOut}
-          >
+          <DropdownMenuItem asChild className="text-rose-500 dark:text-rose-400" disabled={isSigningOut}>
             <button className="w-full" onClick={() => signOut()}>
               <LogOut size={16} />
               <span>Sair</span>
