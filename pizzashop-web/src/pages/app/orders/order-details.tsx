@@ -93,7 +93,7 @@ export function OrderDetails({ orderId, open }: OrderDetailsProps) {
             </TableHeader>
             <TableBody>
               {order.orderItems.map((item) => (
-                <TableRow>
+                <TableRow key={item.id}>
                   <TableCell>{item.product.name}</TableCell>
                   <TableCell className="text-right">{item.quantity}</TableCell>
                   <TableCell className="text-right">
