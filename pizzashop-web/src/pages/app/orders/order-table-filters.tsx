@@ -28,15 +28,14 @@ export function OrderTableFilters() {
   const customerName = searchParams.get("customerName");
   const status = searchParams.get("status");
 
-  const { register, handleSubmit, control, reset } =
-    useForm<OrderFiltersSchema>({
-      resolver: zodResolver(orderFiltersSchema),
-      defaultValues: {
-        orderId: orderId || "",
-        customerName: customerName || "",
-        status: status || "all",
-      },
-    });
+  const { register, handleSubmit, control, reset } = useForm<OrderFiltersSchema>({
+    resolver: zodResolver(orderFiltersSchema),
+    defaultValues: {
+      orderId: orderId || "",
+      customerName: customerName || "",
+      status: status || "all",
+    },
+  });
 
   function handleFilter({ orderId, customerName, status }: OrderFiltersSchema) {
     setSearchParams((state) => {
@@ -70,16 +69,9 @@ export function OrderTableFilters() {
   }
 
   return (
-    <form
-      className="flex items-center gap-2"
-      onSubmit={handleSubmit(handleFilter)}
-    >
+    <form className="flex items-center gap-2" onSubmit={handleSubmit(handleFilter)}>
       <span className="text-sm font-semibold">Filtrar por</span>
-      <Input
-        placeholder="ID do pedido"
-        className="h-8 w-auto"
-        {...register("orderId")}
-      />
+      <Input placeholder="ID do pedido" className="h-8 w-auto" {...register("orderId")} />
       <Input
         placeholder="Buscar por cliente"
         className="h-8 w-[320px]"
@@ -114,12 +106,7 @@ export function OrderTableFilters() {
         <Search className="mr-2 h-4 w-4" />
         Filtrar resultados
       </Button>
-      <Button
-        type="button"
-        variant="outline"
-        size="sm"
-        onClick={handleRemoveFilters}
-      >
+      <Button type="button" variant="outline" size="sm" onClick={handleRemoveFilters}>
         <X className="mr-2 h-4 w-4" />
         Remover filtros
       </Button>

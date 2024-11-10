@@ -1,4 +1,4 @@
-import { getOrderDetails } from "@/api/get-order-details";
+import { getOrderDetailsApi } from "@/api/get-order-details";
 import { OrderStatus } from "@/components/order-status";
 import {
   DialogContent,
@@ -27,7 +27,7 @@ interface OrderDetailsProps {
 export function OrderDetails({ orderId, open }: OrderDetailsProps) {
   const { data: order } = useQuery({
     queryKey: ["order", orderId],
-    queryFn: () => getOrderDetails({ orderId }),
+    queryFn: () => getOrderDetailsApi({ orderId }),
     enabled: open,
   });
 
