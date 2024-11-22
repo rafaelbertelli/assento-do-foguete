@@ -1,4 +1,4 @@
-import { BarChart } from "lucide-react";
+import { BarChart, Loader2 } from "lucide-react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,8 +29,8 @@ export function ChartPopularProducts() {
           <BarChart className="h-4 w-4 text-muted-foreground" />
         </div>
       </CardHeader>
-      {popularProducts?.length && (
-        <CardContent>
+      <CardContent>
+        {popularProducts?.length ? (
           <ResponsiveContainer width="100%" height={240}>
             <PieChart style={{ fontSize: 12 }}>
               <Pie
@@ -72,8 +72,12 @@ export function ChartPopularProducts() {
               <Tooltip />
             </PieChart>
           </ResponsiveContainer>
-        </CardContent>
-      )}
+        ) : (
+          <div className="flex h-[240px] w-full items-center justify-center">
+            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          </div>
+        )}
+      </CardContent>
     </Card>
   );
 }

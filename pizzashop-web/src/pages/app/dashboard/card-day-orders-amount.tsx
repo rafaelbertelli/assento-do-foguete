@@ -2,6 +2,7 @@ import { getDayOrdersAmountApi } from "@/api/get-day-orders-amount";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { UtensilsCrossedIcon } from "lucide-react";
+import { MetricCardSkeleton } from "./metric-card-skeleton";
 
 export function CardDayOrdersAmount() {
   const { data: dayOrdersAmount } = useQuery({
@@ -15,30 +16,34 @@ export function CardDayOrdersAmount() {
         <CardTitle className="text-base font-semibold">Pedidos (dia)</CardTitle>
         <UtensilsCrossedIcon className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
-      {dayOrdersAmount && (
-        <CardContent className="space-y-1">
-          <span className="text-2xl font-bold tracking-tight">
-            {dayOrdersAmount.amount.toLocaleString("pt-BR")}
-          </span>
-          <p className="text-sm text-muted-foreground">
-            {dayOrdersAmount.diffFromYesterday >= 0 ? (
-              <>
-                <span className="text-emerald-500 dark:text-rose-400">
-                  {dayOrdersAmount.diffFromYesterday * 100}%
-                </span>
-                <span> em relação ao dia anterior</span>
-              </>
-            ) : (
-              <>
-                <span className="text-rose-500 dark:text-rose-400">
-                  {dayOrdersAmount.diffFromYesterday * 100}%
-                </span>
-                <span> em relação ao dia anterior</span>
-              </>
-            )}{" "}
-          </p>
-        </CardContent>
-      )}
+      <CardContent className="space-y-1">
+        {dayOrdersAmount ? (
+          <>
+            <span className="text-2xl font-bold tracking-tight">
+              {dayOrdersAmount.amount.toLocaleString("pt-BR")}
+            </span>
+            <p className="text-sm text-muted-foreground">
+              {dayOrdersAmount.diffFromYesterday >= 0 ? (
+                <>
+                  <span className="text-emerald-500 dark:text-rose-400">
+                    {dayOrdersAmount.diffFromYesterday * 100}%
+                  </span>
+                  <span> em relação ao dia anterior</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-rose-500 dark:text-rose-400">
+                    {dayOrdersAmount.diffFromYesterday * 100}%
+                  </span>
+                  <span> em relação ao dia anterior</span>
+                </>
+              )}{" "}
+            </p>
+          </>
+        ) : (
+          <MetricCardSkeleton />
+        )}
+      </CardContent>
     </Card>
   );
 }
