@@ -10,6 +10,8 @@ export function CardMonthRevenue() {
     queryFn: getMonthRevenueApi,
   });
 
+  console.log(monthRevenue);
+
   return (
     <Card>
       <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
@@ -29,14 +31,14 @@ export function CardMonthRevenue() {
               {monthRevenue.diffFromLastMonth >= 0 ? (
                 <>
                   <span className="text-emerald-500 dark:text-emerald-400">
-                    +{monthRevenue.diffFromLastMonth * 100}%
+                    +{monthRevenue.diffFromLastMonth}%
                   </span>
                   <span> em relação ao mês anterior</span>
                 </>
               ) : (
                 <>
                   <span className="text-emerald-500 dark:text-emerald-400">
-                    {monthRevenue.diffFromLastMonth * 100}%
+                    {monthRevenue.diffFromLastMonth}%
                   </span>
                   <span> em relação ao mês anterior</span>
                 </>

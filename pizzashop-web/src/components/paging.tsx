@@ -1,9 +1,4 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 import { Button } from "./ui/button";
 
 interface PagingProps {
@@ -13,21 +8,14 @@ interface PagingProps {
   onPageChange: (pageIndex: number) => Promise<void> | void;
 }
 
-export function Paging({
-  pageIndex = 0,
-  totalCount = 0,
-  perPage,
-  onPageChange,
-}: PagingProps) {
+export function Paging({ pageIndex = 0, totalCount = 0, perPage, onPageChange }: PagingProps) {
   const totalPages = Math.ceil(totalCount / perPage) || 1;
   const isLastPage = pageIndex === totalPages - 1;
   const isFirstPage = pageIndex === 0;
 
   return (
     <div className="flex items-center justify-between">
-      <span className="text-sm text-muted-foreground">
-        Total de {totalCount} registros
-      </span>
+      <span className="text-sm text-muted-foreground">Total de {totalCount} registros</span>
 
       <div className="flex items-center gap-6 lg:gap-8">
         <div className="text-sm font-medium">

@@ -26,14 +26,14 @@ export function CardDayOrdersAmount() {
               {dayOrdersAmount.diffFromYesterday >= 0 ? (
                 <>
                   <span className="text-emerald-500 dark:text-rose-400">
-                    {dayOrdersAmount.diffFromYesterday * 100}%
+                    {dayOrdersAmount.diffFromYesterday}%
                   </span>
                   <span> em relação ao dia anterior</span>
                 </>
               ) : (
                 <>
                   <span className="text-rose-500 dark:text-rose-400">
-                    {dayOrdersAmount.diffFromYesterday * 100}%
+                    {dayOrdersAmount.diffFromYesterday}%
                   </span>
                   <span> em relação ao dia anterior</span>
                 </>
