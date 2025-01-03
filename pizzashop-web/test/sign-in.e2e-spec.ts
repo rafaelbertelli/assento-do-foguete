@@ -8,9 +8,7 @@ test("sign-in successfully", async ({ page }) => {
 
   const toast = page.getByText("Enviamos um link de login para - johndoe@example.com");
 
-  expect(toast).toBeVisible();
-
-  await page.waitForTimeout(2000);
+  await expect(toast).toBeVisible();
 });
 
 test("sign-in with wrong credentials", async ({ page }) => {
@@ -21,9 +19,7 @@ test("sign-in with wrong credentials", async ({ page }) => {
 
   const toast = page.getByText("Erro ao acessar painel, tente novamente mais tarde");
 
-  expect(toast).toBeVisible();
-
-  await page.waitForTimeout(2000);
+  await expect(toast).toBeVisible();
 });
 
 test("navigate to new restaurant page", async ({ page }) => {
