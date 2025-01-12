@@ -1,6 +1,6 @@
+import { Header } from "@/components/header";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import { Header } from "./components/header";
 
 import "./styles/globals.css";
 
@@ -22,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} antialiased dark`}>
+      <body
+        className={`${roboto.variable} antialiased dark flex flex-col flex-start items-center min-h-screen`}
+      >
         <Header />
         {children}
       </body>

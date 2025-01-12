@@ -1,4 +1,5 @@
 @import "./colors.css";
+@import "./font.css";
 
 @tailwind base;
 @tailwind components;
@@ -71,5 +72,7 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+
+    background-color: var(--color-gray-800);
   }
 }
