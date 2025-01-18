@@ -16,7 +16,7 @@
   flex-direction: column;
   overflow: hidden;
 
-  footer {
+  .productFooter {
     position: absolute;
     bottom: 0.25rem;
     left: 0.25rem;
@@ -34,12 +34,12 @@
     opacity: 0;
     transition: all 0.2s ease-in-out;
 
-    strong {
+    .productTitle {
       font-size: var(--font-lg);
       color: var(--color-gray-100);
     }
 
-    span {
+    .productPrice {
       font-size: var(--font-xl);
       font-weight: bold;
       color: var(--color-green-300);

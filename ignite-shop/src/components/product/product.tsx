@@ -5,7 +5,7 @@ export function Product({ children }: { children: React.ReactNode }) {
     <div className={`${styles.product}`}>
       {children}
 
-      <footer>
+      <footer className={styles.productFooter}>
         <strong>camiseta X</strong>
         <span>R$ 100,00</span>
       </footer>
