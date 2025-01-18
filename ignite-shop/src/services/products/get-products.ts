@@ -1,13 +1,24 @@
 "use server";
+import { stripe } from "@/lib/stipe/stripe";
+import { ProductType } from "@/types/products/product";
+import Stripe from "stripe";
 
-export async function getProducts() {
-  const response = await fetch("https://fakestoreapi.com/products");
-  const products = await response.json();
+export async function getProducts(): Promise<ProductType[]> {
+  const response = await stripe.products.list({
+    limit: 10,
+    expand: ["data.default_price"],
+  });
 
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  const products = response.data.map((product) => {
+    const price = product.default_price as Stripe.Price;
 
-  const secretToTest = process.env.SECRET_TO_TEST;
-  console.log(secretToTest);
+    return {
+      id: product.id,
+      name: product.name,
+      imageUrl: product.images[0],
+      price: price.unit_amount,
+    };
+  });
 
   return products;
 }
