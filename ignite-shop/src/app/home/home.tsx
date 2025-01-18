@@ -30,7 +30,13 @@ export function Home({ products }: { products: Promise<any[]> }) {
         <CarouselContent>
           <CarouselItem className="md:basis-1/2 lg:basis-1/3">
             <Product>
-              <Image src={image1} alt="image-1" width={520} height={480} />
+              <Image
+                src={image1}
+                alt="image-1"
+                width={520}
+                height={480}
+                style={{ objectFit: "cover" }}
+              />
             </Product>
           </CarouselItem>
 

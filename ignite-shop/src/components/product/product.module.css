@@ -16,10 +16,6 @@
   flex-direction: column;
   overflow: hidden;
 
-  img {
-    object-fit: cover;
-  }
-
   footer {
     position: absolute;
     bottom: 0.25rem;
