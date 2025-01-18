@@ -14,7 +14,7 @@ import Image from "next/image";
 import { use } from "react";
 import styles from "./home.module.css";
 
-export function Home({ products }: { products: Promise<any[]> }) {
+export function Home({ products }: { products: Promise<unknown[]> }) {
   const allProducts = use(products);
   console.log(allProducts && allProducts[0]);
 
