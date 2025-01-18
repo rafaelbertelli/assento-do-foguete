@@ -23,7 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} antialiased dark flex flex-col flex-start items-center min-h-screen`}
+        // className={`${roboto.variable} antialiased dark flex flex-col flex-start items-center min-h-screen`}
+        className={`${roboto.variable} antialiased dark flex flex-col flex-start items-center min-h-screen max-w-[1180px] m-auto`}
       >
         <Header />
         {children}

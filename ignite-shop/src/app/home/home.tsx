@@ -10,11 +10,17 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+
+import { use } from "react";
 import styles from "./home.module.css";
 
-export function Home() {
+export function Home({ products }: { products: Promise<any[]> }) {
+  const allProducts = use(products);
+  // console.log(allProducts);
+
   return (
-    <div className={`${styles.home} flex gap-12 ml-auto min-h-[656px]`}>
+    // <div className={`${styles.home} flex gap-12 ml-auto min-h-[656px]`}>
+    <div className={`${styles.home} flex gap-12 min-h-[656px]`}>
       <Carousel
         opts={{
           align: "start",

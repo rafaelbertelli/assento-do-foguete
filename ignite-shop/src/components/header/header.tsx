@@ -4,7 +4,8 @@ import styles from "./header.module.css";
 
 export function Header() {
   return (
-    <header className={`${styles.header} py-8 px-0 max-w-[1180px] w-full`}>
+    // <header className={`${styles.header} py-8 px-0 max-w-[1180px] w-full`}>
+    <header className={`${styles.header} py-8 px-0 w-full`}>
       <Image src={logo} alt="logo" />
     </header>
   );

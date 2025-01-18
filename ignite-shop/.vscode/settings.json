@@ -1,0 +1,40 @@
+{
+  // ESLINT
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "always"
+  },
+  "editor.indentSize": 2,
+
+  // FORMATTERS
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // VSCODE JEST PERFORMANCE
+  "jest.runMode": "deferred",
+
+  // MISCELANEOUS
+  "todohighlight.keywords": [
+    {
+      "text": "debugger",
+      "color": "#fff",
+      "backgroundColor": "#ff0000",
+      "borderRadius": "0px 6px 0px 6px "
+    },
+    {
+      "text": "console.log",
+      "color": "#ff0000",
+      "backgroundColor": "#ff000022"
+    },
+    {
+      "text": "//",
+      "color": "#ffa500",
+      "backgroundColor": "#ffa00033"
+    }
+  ]
+}
