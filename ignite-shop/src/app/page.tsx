@@ -1,3 +1,5 @@
+export const revalidate = 86400; // Cache de 24 horas
+
 import { getProducts } from "@/services/products/get-products";
 import { Suspense } from "react";
 import { Home } from "./home";

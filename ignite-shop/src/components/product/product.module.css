@@ -35,12 +35,12 @@
     transition: all 0.2s ease-in-out;
 
     .productTitle {
-      font-size: var(--font-lg);
+      font-size: var(--font-sm);
       color: var(--color-gray-100);
     }
 
     .productPrice {
-      font-size: var(--font-xl);
+      font-size: var(--font-md);
       font-weight: bold;
       color: var(--color-green-300);
     }

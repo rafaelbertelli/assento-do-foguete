@@ -11,7 +11,6 @@ import styles from "./home.module.css";
 
 export function Home({ products }: { products: Promise<ProductType[]> }) {
   const allProducts = use(products);
-  console.log(allProducts && allProducts[0]);
 
   return (
     // <div className={`${styles.home} flex gap-12 ml-auto min-h-[656px]`}>
