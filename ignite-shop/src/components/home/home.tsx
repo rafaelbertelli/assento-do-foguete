@@ -1,4 +1,3 @@
-import { Product } from "@/components/product/product";
 import {
   Carousel,
   CarouselContent,
@@ -6,7 +5,10 @@ import {
 } from "@/components/ui/carousel";
 
 import { ProductType } from "@/types/products/product";
+
+import Link from "next/link";
 import { use } from "react";
+import { CarouselProduct } from "../carousel-product/carousel-product";
 import styles from "./home.module.css";
 
 export function Home({ products }: { products: Promise<ProductType[]> }) {
@@ -28,7 +30,9 @@ export function Home({ products }: { products: Promise<ProductType[]> }) {
                 key={product.id}
                 className="md:basis-1/2 lg:basis-1/3"
               >
-                <Product product={product} />
+                <Link href={`/product/${product.id}`}>
+                  <CarouselProduct product={product} />
+                </Link>
               </CarouselItem>
             );
           })}

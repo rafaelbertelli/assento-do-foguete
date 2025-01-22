@@ -1,4 +1,4 @@
-.product {
+.carouselProduct {
   background: linear-gradient(
     180deg,
     var(--color-green-gradient) 0%,
@@ -16,7 +16,7 @@
   flex-direction: column;
   overflow: hidden;
 
-  .productFooter {
+  .footer {
     position: absolute;
     bottom: 0.25rem;
     left: 0.25rem;
@@ -34,12 +34,12 @@
     opacity: 0;
     transition: all 0.2s ease-in-out;
 
-    .productTitle {
+    .title {
       font-size: var(--font-sm);
       color: var(--color-gray-100);
     }
 
-    .productPrice {
+    .price {
       font-size: var(--font-md);
       font-weight: bold;
       color: var(--color-green-300);
@@ -47,7 +47,7 @@
   }
 
   &:hover {
-    .productFooter {
+    .footer {
       transform: translateY(0%);
       opacity: 1;
     }

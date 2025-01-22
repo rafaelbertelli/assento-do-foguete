@@ -1,11 +1,11 @@
 import { formatCurrency } from "@/lib/formatCurrency";
 import { ProductType } from "@/types/products/product";
 import Image from "next/image";
-import styles from "./product.module.css";
+import styles from "./carousel-product.module.css";
 
-export function Product({ product }: { product: ProductType }) {
+export function CarouselProduct({ product }: { product: ProductType }) {
   return (
-    <div className={`${styles.product}`}>
+    <div className={`${styles.carouselProduct}`}>
       <Image
         src={product.imageUrl}
         alt={product.name}
@@ -14,9 +14,9 @@ export function Product({ product }: { product: ProductType }) {
         style={{ objectFit: "cover" }}
       />
 
-      <footer className={styles.productFooter}>
-        <strong className={styles.productTitle}>{product.name}</strong>
-        <span className={styles.productPrice}>
+      <footer className={styles.footer}>
+        <strong className={styles.title}>{product.name}</strong>
+        <span className={styles.price}>
           {product.price ? formatCurrency(product.price) : "Esgotado"}
         </span>
       </footer>
